@@ -10,7 +10,12 @@
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: 15px;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
+}
+
+a {
+  color: #000;
+  text-decoration-line: none;
 }
 
 body {
@@ -92,5 +97,82 @@ header .header #themeSwitcher i {
   border-radius: 5px;
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+/******************* flagCardsSection *******************/
+
+.flagCardsSection .flagCardsDiv {
+  display: grid;
+  grid-template-columns: repeat(4, 280px);
+  grid-template-rows: 400px;
+  justify-content: space-between;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: relative;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .upperImgDiv {
+  flex-basis: 50%;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .upperImgDiv img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .lowerDetailsDiv {
+  flex-basis: 50%;
+  padding: 20px 10px;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .lowerDetailsDiv #countryName {
+  margin-bottom: 20px;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .lowerDetailsDiv p {
+  margin-bottom: 5px;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .moreDetails {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.flagCardsSection .flagCardsDiv .flagCard .moreDetails a i {
+  font-size: 20px;
+}
+
+/******************* paginationSection *******************/
+
+.paginationSection {
+  margin: 20px 0;
+}
+
+.paginationSection .paginationDiv{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.paginationSection .paginationDiv .btn {
+  min-width: 100px;
+  padding: 4px;
+  color: #fff;
+  background-color: maroon;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  font-size: 15px;
   cursor: pointer;
 }

@@ -21,26 +21,55 @@
   <section class="filters">
     <div class="container">
       <div class="filtersDiv">
-
         <div class="searchInputDiv">
           <input type="text" placeholder="Search for a country..." autofocus>
           <span class="seachIcon"><i class="bi bi-search"></i></span>
         </div>
-
         <div class="selectFiltersDiv">
             <select id="populationFilter" class="filterSelect" >
               <option value="" hidden>Filter by population</option>
               <option value="all">All</option>
               <option value="europe">Europe</option>
             </select>
-  
             <select id="regionFilter" class="filterSelect">
               <option value="" hidden>Filter by region</option>
               <option value="all">All</option>
-              <option value="europe">Europe</option>
+              <option value="Africa">Africa</option>
+              <option value="Americas">America</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Antarctic">Antarctic</option>
             </select>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="flagCardsSection">
+    <div class="container">
+      <p id="updateText"></p>
+      <div class="flagCardsDiv" id="flagCardsDiv">
+        <!-- <div class="flagCard">
+          <div class="upperImgDiv"><img src="https://flagcdn.com/in.svg" alt="Image"></div>
+          <div class="lowerDetailsDiv">
+            <h2 id="countryName">India</h2>
+            <p><strong>Population:&nbsp;</strong><span id="populationCount">12,00,000,000</span></p>
+            <p><strong>Region:&nbsp;</strong><span id="region">Asia</span></p>
+            <p><strong>Capital:&nbsp;</strong><span id="capital">New-Delhi</span></p>
+          </div>
+          <p class="moreDetails"><a href="#"><i class="bi bi-arrow-right-square-fill"></i></a></p>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <section class="paginationSection">
+    <div class="container">
+      <div class="paginationDiv">
+        <button id="prevBtn" class="btn">Prev</button>
+        <p id="pageNumber">1</p>
+        <button id="nextBtn" class="btn">Next</button>
       </div>
     </div>
   </section>
