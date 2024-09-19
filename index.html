@@ -22,15 +22,20 @@
     <div class="container">
       <div class="filtersDiv">
         <div class="searchInputDiv">
-          <input type="text" placeholder="Search for a country..." autofocus>
+          <input type="text" placeholder="Search for a country..." id="countrySearchInput" autocomplete="off" autofocus>
           <span class="seachIcon"><i class="bi bi-search"></i></span>
         </div>
         <div class="selectFiltersDiv">
-            <select id="populationFilter" class="filterSelect" >
-              <option value="" hidden>Filter by population</option>
-              <option value="all">All</option>
-              <option value="europe">Europe</option>
-            </select>
+          <select id="populationFilter" class="filterSelect">
+            <option value="" hidden>Filter by population</option>
+            <option value="0-1000000000000">All</option>
+            <option value="0-5000">Less than 5,000</option>
+            <option value="5000-100000">5,000 - 1 Lakh</option>
+            <option value="100000-500000">1 Lakh - 5 Lakh</option>
+            <option value="500000-1000000">5 Lakh - 10 Lakh</option>
+            <option value="1000000-5000000">10 Lakh - 50 Lakh</option>
+            <option value="5000000-1000000000000">More than 50 Lakh</option>
+          </select>          
             <select id="regionFilter" class="filterSelect">
               <option value="" hidden>Filter by region</option>
               <option value="all">All</option>

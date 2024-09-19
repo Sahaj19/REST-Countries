@@ -1,0 +1,11 @@
+- implement population filter
+- implement search filter
+- sync region/population filter 
+- implement pagination on homepage
+- make homepage responsive
+- and then only move to country.html page
+
+
+Solid Implementations
+- Full screen option
+- table to excel option

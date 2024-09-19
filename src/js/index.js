@@ -1,4 +1,6 @@
+let countrySearchInput = document.querySelector("#countrySearchInput");
 let regionFilter = document.querySelector("#regionFilter");
+let populationFilter = document.querySelector("#populationFilter");
 let updateText = document.querySelector("#updateText");
 let flagCardsDiv = document.querySelector("#flagCardsDiv");
 let prevBtn = document.querySelector("#prevBtn");
@@ -9,16 +11,37 @@ let nextBtn = document.querySelector("#nextBtn");
 
 let allApiData = [];
 let filteredApiData = [];
+let regionValue = "all";
+let minPopulation = 0;
+let maxPopulation = Number.MAX_SAFE_INTEGER;
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function beforeFetchingData() {
+  updateText.innerHTML = `<div class="loader"></div>`;
+  countrySearchInput.disabled = true;
+  regionFilter.disabled = true;
+  populationFilter.disabled = true;
+}
+
+function afterFetchingData() {
+  updateText.innerHTML = "";
+  countrySearchInput.disabled = false;
+  regionFilter.disabled = false;
+  populationFilter.disabled = false;
+}
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 async function flagsData() {
   try {
+    beforeFetchingData();
     let response = await fetch("https://restcountries.com/v3.1/all/");
     if(response.ok) {
       let data = await response.json();
       allApiData = data;
       filteredApiData = data;
+      afterFetchingData();
       renderFlags(filteredApiData);
     }else {
       updateText.innerHTML = "Error fetching data"
@@ -31,18 +54,58 @@ async function flagsData() {
 
 flagsData();
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+countrySearchInput.addEventListener("input", function() {
+  filteredApiData = allApiData.filter((country) => {
+    return country.name.common.toLowerCase().includes(countrySearchInput.value.toLowerCase());
+  })
+  regionPopulationCombinedFilteration()
+})
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 regionFilter.addEventListener("change", function(event) {
-  let regionValue = event.target.value;
-  console.log(regionValue);
-  if(regionValue === "all") {
-    renderFlags(allApiData);
-  }else {
-    filteredApiData = allApiData.filter((country) => country.region === regionValue)
-    renderFlags(filteredApiData);
-  }
+  regionValue = event.target.value;
+  regionPopulationCombinedFilteration();
 })
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+
+populationFilter.addEventListener("change", function(event) {
+  let populationValue = event.target.value;
+  let populationValuesArray = populationValue.split("-")
+  minPopulation = parseInt(populationValuesArray[0]);
+  maxPopulation = parseInt(populationValuesArray[1]);
+  regionPopulationCombinedFilteration();
+})
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function regionPopulationCombinedFilteration() {
+  updateText.innerHTML = "";
+
+  filteredApiData = allApiData;
+
+
+  if(regionValue !== "all") {
+    filteredApiData = filteredApiData.filter((country) => {
+      return country.region === regionValue;
+    })
+  }
+
+  filteredApiData = filteredApiData.filter((country) => {
+    return country.population <= maxPopulation && country.population >= minPopulation;
+  })
+
+  if(filteredApiData.length === 0) {
+    updateText.innerHTML = "No Match Found, Try Again."
+    flagCardsDiv.innerHTML = "";
+    return;
+  }
+
+  renderFlags(filteredApiData);
+}
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
