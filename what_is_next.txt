@@ -1,11 +1,5 @@
-- implement population filter
-- implement search filter
-- sync region/population filter 
-- implement pagination on homepage
-- make homepage responsive
-- and then only move to country.html page
-
-
-Solid Implementations
-- Full screen option
-- table to excel option
+- Basic flow is ready for the country.html page
+- Complete country.html page 
+- make both the pages responsive
+- implement light/dark mode 
+- implement pagination

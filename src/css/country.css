@@ -1,0 +1,61 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 15px;
+  /* border: 1px solid #000; */
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.5s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body {
+  font-family: sans-serif;
+}
+
+/******************* header styling *******************/
+
+header {
+  padding: 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+header .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .header #themeSwitcher {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+header .header #themeSwitcher i {
+  font-size: 20px;
+}

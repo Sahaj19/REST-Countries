@@ -14,7 +14,7 @@ let filteredApiData = [];
 let regionValue = "all";
 let minPopulation = 0;
 let maxPopulation = Number.MAX_SAFE_INTEGER;
-
+ 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function beforeFetchingData() {
@@ -56,6 +56,19 @@ flagsData();
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+prevBtn.addEventListener("click", function() {
+  console.log("prev button clicked");
+})
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+nextBtn.addEventListener("click", function() {
+  console.log("next button clicked");
+})
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 countrySearchInput.addEventListener("input", function() {
   filteredApiData = allApiData.filter((country) => {
     return country.name.common.toLowerCase().includes(countrySearchInput.value.toLowerCase());
@@ -85,9 +98,6 @@ populationFilter.addEventListener("change", function(event) {
 function regionPopulationCombinedFilteration() {
   updateText.innerHTML = "";
 
-  filteredApiData = allApiData;
-
-
   if(regionValue !== "all") {
     filteredApiData = filteredApiData.filter((country) => {
       return country.region === regionValue;
@@ -101,10 +111,10 @@ function regionPopulationCombinedFilteration() {
   if(filteredApiData.length === 0) {
     updateText.innerHTML = "No Match Found, Try Again."
     flagCardsDiv.innerHTML = "";
-    return;
   }
 
   renderFlags(filteredApiData);
+  filteredApiData = allApiData;
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -120,7 +130,7 @@ function renderFlags(data) {
           <p><strong>Region:&nbsp;</strong><span id="region">${country.region}</span></p>
           <p><strong>Capital:&nbsp;</strong><span id="capital">${country.capital !== undefined ? country.capital[0] : "N/A"}</span></p>
         </div>
-      <p class="moreDetails"><a href="country.html?${country.name.common}"><i class="bi bi-arrow-right-square-fill"></i></a></p>
+      <p class="moreDetails"><a href="country.html?countryName=${country.name.common}"><i class="bi bi-arrow-right-square-fill"></i></a></p>
     </div>`
   }).join("")
 }

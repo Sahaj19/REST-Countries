@@ -37,6 +37,11 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+.disabledBtn {
+  background-color: transparent;
+  cursor: not-allowed;
+}
+
 
 /******************* header styling *******************/
 
@@ -103,6 +108,7 @@ header .header #themeSwitcher i {
   display: flex;
   justify-content: end;
   gap: 10px;
+  z-index: 1000;
 }
 
 .filters .filtersDiv .selectFiltersDiv .filterSelect {
