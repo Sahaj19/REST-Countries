@@ -2,4 +2,3 @@
 - Complete country.html page 
 - make both the pages responsive
 - implement light/dark mode 
-- implement pagination

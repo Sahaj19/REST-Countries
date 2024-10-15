@@ -198,3 +198,9 @@ header .header #themeSwitcher i {
   font-size: 15px;
   cursor: pointer;
 }
+
+.disablePrevNextBtn {
+  background-color: grey !important;
+  color: white !important;
+  cursor: not-allowed !important;
+}

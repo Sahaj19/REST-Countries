@@ -14,6 +14,10 @@ let filteredApiData = [];
 let regionValue = "all";
 let minPopulation = 0;
 let maxPopulation = Number.MAX_SAFE_INTEGER;
+
+//pagination variables
+let currentPage = 1;
+let flagsPerPage = 12;
  
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -66,13 +70,21 @@ flagsData();
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 prevBtn.addEventListener("click", function() {
-  console.log("prev button clicked");
+  // console.log("previous button clicked");
+  if(currentPage > 1) {
+    currentPage--;
+}
+  renderFlags(filteredApiData)
 })
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 nextBtn.addEventListener("click", function() {
-  console.log("next button clicked");
+  // console.log("next button clicked")
+  if(currentPage < Math.ceil(filteredApiData.length/flagsPerPage)) {
+    currentPage++;
+}
+  renderFlags(filteredApiData);
 })
 
 
@@ -105,6 +117,7 @@ populationFilter.addEventListener("change", function(event) {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function regionPopulationCombinedFilteration() {
+  currentPage = 1;
   filteredApiData = allApiData.filter((country) => {
     return (
       // search filter
@@ -130,7 +143,10 @@ function regionPopulationCombinedFilteration() {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function renderFlags(data) {
-  return flagCardsDiv.innerHTML = data.map((country) => {
+  let startingIndex = (currentPage - 1) * flagsPerPage;
+  let endingIndex = startingIndex + flagsPerPage;
+  data = data.slice(startingIndex, endingIndex);
+  flagCardsDiv.innerHTML = data.map((country) => {
     return `
     <div class="flagCard">
       <div class="upperImgDiv"><img src="${country.flags.svg}" alt="${country.name.common} Flag Image" title="${country.name.common} Flag Image"></div>
@@ -143,4 +159,23 @@ function renderFlags(data) {
       <p class="moreDetails"><a href="country.html?countryName=${country.name.common}"><i class="bi bi-arrow-right-square-fill"></i></a></p>
     </div>`
   }).join("")
+  updatePaginationBtnState(filteredApiData.length);
+}
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function updatePaginationBtnState(totalDataLength) {
+  if(currentPage === 1) {
+      prevBtn.classList.add("disablePrevNextBtn");
+  }else {
+      prevBtn.classList.remove("disablePrevNextBtn")
+  }
+
+  if(currentPage === Math.ceil(totalDataLength/flagsPerPage)) {
+      nextBtn.classList.add("disablePrevNextBtn");
+  }else {
+      nextBtn.classList.remove("disablePrevNextBtn")
+  }
+
+  pageNumber.innerHTML = currentPage;
 }
