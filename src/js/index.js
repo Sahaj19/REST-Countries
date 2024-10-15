@@ -9,7 +9,7 @@ let nextBtn = document.querySelector("#nextBtn");
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
-let allApiData = [];
+let allApiData = JSON.parse(localStorage.getItem("Flags-Data")) || [];
 let filteredApiData = [];
 let regionValue = "all";
 let minPopulation = 0;
@@ -34,21 +34,30 @@ function afterFetchingData() {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 async function flagsData() {
-  try {
-    beforeFetchingData();
-    let response = await fetch("https://restcountries.com/v3.1/all/");
-    if(response.ok) {
-      let data = await response.json();
-      allApiData = data;
-      filteredApiData = data;
-      afterFetchingData();
-      renderFlags(filteredApiData);
-    }else {
-      updateText.innerHTML = "Error fetching data"
+  let flagsData = JSON.parse(localStorage.getItem("Flags-Data"));
+
+  if(flagsData) {
+    allApiData = flagsData;
+    filteredApiData = flagsData;
+    renderFlags(filteredApiData);
+  }else {
+    try {
+      beforeFetchingData();
+      let response = await fetch("https://restcountries.com/v3.1/all/");
+      if(response.ok) {
+        let data = await response.json();
+        localStorage.setItem("Flags-Data", JSON.stringify(data));
+        allApiData = data;
+        filteredApiData = data;
+        renderFlags(filteredApiData);
+        afterFetchingData();
+      }else {
+        updateText.innerHTML = "Error fetching data"
+      }
+    } catch (error) {
+      updateText.innerHTML = "Network Error: Please try again later!"
+      console.log("Catch block executed: ", error);
     }
-  } catch (error) {
-    updateText.innerHTML = "Network Error: Please try again later!"
-    console.log("Catch block executed: ", error);
   }
 }
 
@@ -96,26 +105,27 @@ populationFilter.addEventListener("change", function(event) {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function regionPopulationCombinedFilteration() {
-  updateText.innerHTML = "";
+  filteredApiData = allApiData.filter((country) => {
+    return (
+      // search filter
+      country.name.common.toLowerCase().includes(countrySearchInput.value.toLowerCase()) &&
+      // region filter
+      (regionValue === "all" || country.region === regionValue) &&
+      // population filter
+      country.population >= minPopulation && country.population <= maxPopulation
+    );
+  });
 
-  if(regionValue !== "all") {
-    filteredApiData = filteredApiData.filter((country) => {
-      return country.region === regionValue;
-    })
-  }
-
-  filteredApiData = filteredApiData.filter((country) => {
-    return country.population <= maxPopulation && country.population >= minPopulation;
-  })
-
-  if(filteredApiData.length === 0) {
-    updateText.innerHTML = "No Match Found, Try Again."
+  // If no relevant matches are there
+  if (filteredApiData.length === 0) {
+    updateText.innerHTML = "No Match Found, Try Again.";
     flagCardsDiv.innerHTML = "";
+  } else {
+    updateText.innerHTML = ""; 
+    renderFlags(filteredApiData);
   }
-
-  renderFlags(filteredApiData);
-  filteredApiData = allApiData;
 }
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
