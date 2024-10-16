@@ -59,3 +59,76 @@ header .header #themeSwitcher {
 header .header #themeSwitcher i {
   font-size: 20px;
 }
+
+/******************* countryDiv styling *******************/
+
+.countryDataSection {
+  margin: 20px 0;
+}
+
+.countryDataSection .countryDataDiv {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.countryDataSection .countryDataDiv .leftFlagDiv{
+  flex-basis: 50%;
+}
+
+.countryDataSection .countryDataDiv .leftFlagDiv img {
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.countryDataSection .countryDataDiv .rightDataDiv {
+  flex-basis: 50%;
+}
+
+.countryDataSection #backBtn {
+  padding: 5px 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.countryDataSection #backBtn a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+thead th {
+  padding: 12px;
+  font-size: 18px;
+  background-color: darkgray;
+  color: #000;
+  font-weight: bold;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color:lightgrey;
+}
+

@@ -59,7 +59,7 @@ async function flagsData() {
         updateText.innerHTML = "Error fetching data"
       }
     } catch (error) {
-      updateText.innerHTML = "Network Error: Please try again later!"
+      updateText.innerHTML = "Network Error: Please Try Again Later &#128556;"
       console.log("Catch block executed: ", error);
     }
   }
@@ -131,7 +131,7 @@ function regionPopulationCombinedFilteration() {
 
   // If no relevant matches are there
   if (filteredApiData.length === 0) {
-    updateText.innerHTML = "No Match Found, Try Again.";
+    updateText.innerHTML = "No Match Found, Try Again &#128556;.";
     flagCardsDiv.innerHTML = "";
   } else {
     updateText.innerHTML = ""; 
