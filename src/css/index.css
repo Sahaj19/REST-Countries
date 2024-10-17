@@ -57,7 +57,6 @@ body.dark {
   }
 }
 
-
 .disabledBtn {
   background-color: transparent;
   cursor: not-allowed;
@@ -217,4 +216,63 @@ header .header #themeSwitcher i {
   background-color: grey !important;
   color: white !important;
   cursor: not-allowed !important;
+}
+
+/******************* index.css responsiveness *******************/
+
+@media (max-width: 1200px) {
+  .flagCardsSection .flagCardsDiv {
+    grid-template-columns: repeat(3, 280px);
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .flagCardsSection .flagCardsDiv {
+    grid-template-columns: repeat(2, 280px);
+  }
+}
+
+@media (max-width: 768px) {
+  .flagCardsSection .flagCardsDiv {
+    grid-template-columns: repeat(2, 280px);
+  }
+
+  .filters .filtersDiv {
+    flex-direction: column;
+  }
+
+  .filters .filtersDiv .searchInputDiv {
+    width: 100%;
+  }
+
+  .filters .filtersDiv .selectFiltersDiv {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filters .filtersDiv .selectFiltersDiv .filterSelect {
+    flex-basis: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  .flagCardsSection .flagCardsDiv {
+    grid-template-columns: repeat(1, 280px);
+  }
+
+  .paginationSection .paginationDiv {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .filters .filtersDiv .selectFiltersDiv {
+    flex-direction: column;
+  }
+
+  .filters .filtersDiv .selectFiltersDiv .filterSelect {
+    flex-basis: 100%;
+  }
 }

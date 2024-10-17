@@ -6,6 +6,8 @@ let countryDataDiv = document.querySelector(".countryDataSection .countryDataDiv
 let leftFlagDiv = document.querySelector(".countryDataSection .countryDataDiv .leftFlagDiv")
 let rightDataDiv = document.querySelector(".countryDataSection .countryDataDiv .rightDataDiv")
 
+document.title = `${countryName} - Country Page`
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function beforeFetchingData() {

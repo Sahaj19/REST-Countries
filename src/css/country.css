@@ -157,3 +157,74 @@ tbody td {
 tbody tr:nth-child(even) {
   background-color: var(--table-row-bg);
 }
+
+
+/******************* Responsive Styling *******************/
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 750px;
+  }
+
+  .countryDataSection .countryDataDiv {
+    flex-direction: column;
+  }
+
+  .countryDataSection .countryDataDiv .leftFlagDiv, 
+  .countryDataSection .countryDataDiv .rightDataDiv {
+    flex-basis: 100%;
+  }
+
+  thead th {
+    font-size: 16px;
+  }
+
+  tbody td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+
+  header .header #themeSwitcher {
+    width: 35px;
+    height: 35px;
+  }
+
+  thead th {
+    font-size: 14px;
+  }
+
+  tbody td {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+    padding-inline: 10px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+
+  thead th {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  tbody td {
+    padding: 6px;
+    font-size: 12px;
+  }
+}

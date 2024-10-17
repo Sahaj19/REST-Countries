@@ -3,6 +3,7 @@ let regionFilter = document.querySelector("#regionFilter");
 let populationFilter = document.querySelector("#populationFilter");
 let updateText = document.querySelector("#updateText");
 let flagCardsDiv = document.querySelector("#flagCardsDiv");
+let paginationDiv = document.querySelector(".paginationDiv");
 let prevBtn = document.querySelector("#prevBtn");
 let pageNumber = document.querySelector("#pageNumber");
 let nextBtn = document.querySelector("#nextBtn");
@@ -92,9 +93,6 @@ nextBtn.addEventListener("click", function() {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 countrySearchInput.addEventListener("input", function() {
-  filteredApiData = allApiData.filter((country) => {
-    return country.name.common.toLowerCase().includes(countrySearchInput.value.toLowerCase());
-  })
   regionPopulationCombinedFilteration()
 })
 
@@ -166,13 +164,24 @@ function renderFlags(data) {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function updatePaginationBtnState(totalDataLength) {
+  let totalPages = Math.ceil(totalDataLength / flagsPerPage);
+
+  //for displaying pagination controls
+  if (totalPages <= 1) {
+    paginationDiv.style.display = "none";
+  } else {
+    paginationDiv.style.display = "";
+  }
+
+  //prev btn working
   if(currentPage === 1) {
       prevBtn.classList.add("disablePrevNextBtn");
   }else {
       prevBtn.classList.remove("disablePrevNextBtn")
   }
 
-  if(currentPage === Math.ceil(totalDataLength/flagsPerPage)) {
+  //next btn working
+  if(currentPage === totalPages) {
       nextBtn.classList.add("disablePrevNextBtn");
   }else {
       nextBtn.classList.remove("disablePrevNextBtn")

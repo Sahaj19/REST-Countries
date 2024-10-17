@@ -1,2 +1,0 @@
-- make both the pages responsive
-- implement light/dark mode 
