@@ -1,0 +1,1 @@
+Deployed here :- https://globalfacts.netlify.app/
