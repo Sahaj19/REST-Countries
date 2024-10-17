@@ -7,6 +7,7 @@ let prevBtn = document.querySelector("#prevBtn");
 let pageNumber = document.querySelector("#pageNumber");
 let nextBtn = document.querySelector("#nextBtn");
 
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
 
 let allApiData = JSON.parse(localStorage.getItem("Flags-Data")) || [];
