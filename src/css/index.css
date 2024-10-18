@@ -62,6 +62,18 @@ body.dark {
   cursor: not-allowed;
 }
 
+.displayNone {
+  display: none !important;
+}
+
+.retryBtn {
+  padding: 2px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
 /******************* Header Styling *******************/
 header {
   padding: 15px 0;

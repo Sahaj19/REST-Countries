@@ -58,11 +58,18 @@ async function flagsData() {
         renderFlags(filteredApiData);
         afterFetchingData();
       }else {
-        updateText.innerHTML = "Error fetching data"
+        updateText.innerHTML = `
+        Error Fetching Data &#128556;
+        <button class="retryBtn" onclick="flagsData()">Retry</button>
+      `;
+        paginationDiv.classList.add("displayNone");
       }
     } catch (error) {
-      updateText.innerHTML = "Network Error: Please Try Again Later &#128556;"
-      console.log("Catch block executed: ", error);
+      updateText.innerHTML = `
+      Error Fetching Data &#128556;
+      <button class="retryBtn" onclick="flagsData()">Retry</button>
+    `;
+      console.log(error);
     }
   }
 }
@@ -72,21 +79,19 @@ flagsData();
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 prevBtn.addEventListener("click", function() {
-  // console.log("previous button clicked");
   if(currentPage > 1) {
     currentPage--;
+    renderFlags(filteredApiData)
 }
-  renderFlags(filteredApiData)
 })
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 nextBtn.addEventListener("click", function() {
-  // console.log("next button clicked")
   if(currentPage < Math.ceil(filteredApiData.length/flagsPerPage)) {
     currentPage++;
+    renderFlags(filteredApiData);
 }
-  renderFlags(filteredApiData);
 })
 
 
@@ -132,6 +137,7 @@ function regionPopulationCombinedFilteration() {
   if (filteredApiData.length === 0) {
     updateText.innerHTML = "No Match Found, Try Again &#128556;.";
     flagCardsDiv.innerHTML = "";
+    paginationDiv.classList.add("displayNone");
   } else {
     updateText.innerHTML = ""; 
     renderFlags(filteredApiData);
@@ -168,9 +174,9 @@ function updatePaginationBtnState(totalDataLength) {
 
   //for displaying pagination controls
   if (totalPages <= 1) {
-    paginationDiv.style.display = "none";
+    paginationDiv.classList.add("displayNone");
   } else {
-    paginationDiv.style.display = "";
+    paginationDiv.classList.remove("displayNone");
   }
 
   //prev btn working
